@@ -116,6 +116,9 @@ class GameViewController: UIViewController {
         } else if player == .o {
             self.currentTurnLabel.text = "O wins!"
         }
+        for c in cells {
+            c.isUserInteractionEnabled = false
+        }
         for (i, c) in cellIndicies.enumerated() {
             let delay = Double(i) * 0.05
             Timer.scheduledTimer(withTimeInterval: delay, repeats: false) { (t) in
@@ -123,18 +126,19 @@ class GameViewController: UIViewController {
                 self.cells[c].animate()
             }
         }
-        playAgainButton.alpha = 1.0
+        playAgainButton.isHidden = false
     }
     
     //Ends game, animates cells and asks user to reset.
     func lose() {
         for c in cells {
+            c.isUserInteractionEnabled = false
             c.animate()
             c.backgroundColor = Constants.gameOverColor
         }
         self.currentTurnLabel.text = "Game Over 😢"
         print("Game Over")
-        playAgainButton.alpha = 1.0
+        playAgainButton.isHidden = false
     }
     
     //Switches current player after turn and updates UI label.
@@ -153,7 +157,7 @@ class GameViewController: UIViewController {
         for c in cells {
             c.reset()
         }
-        playAgainButton.alpha = 0.0
+        playAgainButton.isHidden = true
         currentPlayer = .x
         currentTurnLabel.text = "Current Turn: X"
     }

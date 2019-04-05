@@ -37,10 +37,13 @@ class GameCell: UIView {
         switch state {
         case .x:
             iconLabel.text = "X"
+            isUserInteractionEnabled = false
         case .o:
             iconLabel.text = "O"
+            isUserInteractionEnabled = false
         case .empty:
             iconLabel.text = ""
+            isUserInteractionEnabled = true
         }
     }
     
