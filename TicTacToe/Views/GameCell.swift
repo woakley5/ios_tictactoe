@@ -67,10 +67,12 @@ class GameCell: UIView {
     
     func animate() {
         UIView.animate(withDuration: 0.1, animations: {
-            self.frame = CGRect(x: self.frame.minX - 5, y: self.frame.minY - 5, width: self.frame.width + 10, height: self.frame.height + 10)
+            self.transform = CGAffineTransform.init(scaleX: 1.15, y: 1.15)
+            self.center = self.center
         }) { (complete) in
             UIView.animate(withDuration: 0.1, animations: {
-                self.frame = CGRect(x: self.frame.minX + 5, y: self.frame.minY + 5, width: self.frame.width - 10, height: self.frame.height - 10)
+                self.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
+                self.center = self.center
             })
         }
     }

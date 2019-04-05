@@ -116,14 +116,13 @@ class GameViewController: UIViewController {
         } else if player == .o {
             self.currentTurnLabel.text = "O wins!"
         }
-        for c in cells {
-            c.isUserInteractionEnabled = false
-        }
+        
         for (i, c) in cellIndicies.enumerated() {
             let delay = Double(i) * 0.05
             Timer.scheduledTimer(withTimeInterval: delay, repeats: false) { (t) in
                 self.cells[c].backgroundColor = Constants.winColor
                 self.cells[c].animate()
+                self.cells[c].isUserInteractionEnabled = false
             }
         }
         playAgainButton.isHidden = false
